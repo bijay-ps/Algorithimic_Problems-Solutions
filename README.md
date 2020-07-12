@@ -1,4 +1,4 @@
-This is an effort to solve coding challenges and alorigthm problems using Python. 
+This is an effort to solve coding challenges and algorithm problems using Python. 
 Main objective -
 1. To improve problem solving skills
 2. To improve understanding of data structures and algorithms
@@ -9,3 +9,4 @@ Websites referred-
 
 Contributions are welcome.
 
+PS - We are starting this in our 30s so it's never too late to learn something. \,,/
