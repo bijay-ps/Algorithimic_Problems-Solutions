@@ -4,45 +4,44 @@
 // [1,2,3,1,1,3]
 //  0 1 2 3 4 5
 // There are 4 good pairs (0,3), (0,4), (3,4), (2,5) 0-indexed
-
 // Approach I - naive approach
 const numIdenticalPairs = function (nums) {
-  let goodPair = 0;
-  for (let i = 0; i < nums.length; i++) {
-    for (let j = 0; j < nums.length; j++) {
-      if (i < j && nums[i] == nums[j]) goodPair++;
+    let goodPair = 0;
+    for (let i = 0; i < nums.length; i++) {
+        for (let j = 0; j < nums.length; j++) {
+            if (i < j && nums[i] == nums[j]) goodPair++;
+        }
     }
-  }
-  return goodPair;
+    return goodPair;
 };
 
 // Approach II
+
+// [1,1,1,1]
+//  0 1 2 3
+// n = 4
+// n(n-1)/2 => 4(3)/2 = 12/2 = 6 
+// [1,2,3,1,1,3]
+//  0 1 2 3 4 5
+// There are 4 good pairs (0,3), (0,4), (3,4), (2,5) 0-indexed
+// {1:3,2:1,3:1}
+// no. of pairs with 1 = (3*2)/2 = 3
+// no. of pairs with 3 = (2*1)/2 = 1
+// total pairs = 4
+
 const numIdenticalPairsII = function (nums) {
-  //   let obj = {}
-  //   let count = 0;
-  //   nums.forEach((val) => {
-  //     if (obj[val]) {
-  //       count += obj[val];
-  //     }
-  //     obj[val] = obj[val] + 1 || 1;
-  //   })
-  //   return count;
-
-  let goodPair = 0;
-  let numsObj = nums.reduce((acc, cur) => {
-    return {
-      ...acc,
-      [cur]: acc[cur] ? acc[cur] + 1 : 1,
-    };
-  }, {});
-
-  nums.forEach((val) => {
-    if (numsObj[val]) {
-      goodPair = goodPair + numsObj[val];
+    let goodPair = 0;
+    let numsObj = nums.reduce((acc, cur) => {
+        return {
+            ...acc,
+            [cur]: acc[cur] ? acc[cur] + 1 : 1,
+        };
+    }, {});
+    for (let prop in numsObj) {
+        let n = numsObj[prop]
+        goodPair = goodPair + (n * (n - 1)) / 2
     }
-  });
-
-  return goodPair;
+    return goodPair;
 };
 
 const res1 = numIdenticalPairs([1, 2, 3, 1, 1, 3]);
